@@ -103,9 +103,25 @@ fun LoginScreen() {
         ) {
             Text("Log In")
         }
+        val annotatedText = buildAnnotatedString {
+            append("Belum ada akun? ")
+            pushStringAnnotation(tag = "SIGN_IN", annotation = "Sign In")
+            withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
+                append("Sign In")
+            }
+            pop()
+        }
 
-
-
+        ClickableText(text = annotatedText, onClick = { offset ->
+            annotatedText.getStringAnnotations(tag = "SIGN_IN", start = offset, end = offset)
+                .firstOrNull()?.let { annotation ->
+                    if (annotation.item == "Sign In") {
+                        // Tindakan yang akan dijalankan saat teks "Sign In" diklik
+                        // Misalnya, arahkan pengguna ke halaman Sign In
+                    }
+                }
+        })
     }
+
 }
 
