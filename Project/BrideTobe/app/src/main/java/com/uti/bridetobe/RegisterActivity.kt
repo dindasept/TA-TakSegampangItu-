@@ -114,6 +114,27 @@ class RegisterActivity : ComponentActivity() {
                 Text("Sign Up")
             }
         }
+        val annotatedText = buildAnnotatedString {
+            append("Sudah ada akun? ")
+            pushStringAnnotation(tag = "LOG_IN", annotation = "Log In")
+            withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
+                append("Log In")
+            }
+            pop()
+        }
+
+        ClickableText(text = annotatedText, onClick = { offset ->
+            annotatedText.getStringAnnotations(tag = "LOG_IN", start = offset, end = offset)
+                .firstOrNull()?.let { annotation ->
+                    if (annotation.item == "Log In") {
+                        // Tindakan yang akan dijalankan saat teks "Sign In" diklik
+                        // Misalnya, arahkan pengguna ke halaman Sign In
+                    }
+                }
+        })
     }
+
 }
+
+
 
